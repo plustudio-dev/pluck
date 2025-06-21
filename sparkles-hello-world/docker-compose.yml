@@ -1,14 +1,28 @@
-version: "3.7"
+version: '3.8'
 
 services:
+  # Exemplo de um serviço web simples
+  web:
+    image: nginx:latest
+    container_name: pluck-media-server_web
+    restart: unless-stopped
+    ports:
+      - "80:80" # Mapeia a porta 80 do container para a porta 80 do host (se o 'port' estiver definido no umbrel-app.yml)
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./html:/usr/share/nginx/html:ro
 
-  app_proxy:
+  # Exemplo de um serviço de banco de dados (se necessário)
+  db:
+    image: postgres:13
+    container_name: pluck-media-server_db
+    restart: unless-stopped
     environment:
-      # The format here is: <app-id>_<docker-service-name>_1
-      APP_HOST: sparkles-hello-world_server_1
-      APP_PORT: 3000
-    
-  server:
-    image: getumbrel/community-app-store-hello-world:latest
-    user: "1000:1000"
-    init: true
+      POSTGRES_DB: pluck_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data: # Define o volume para persistência de dados do banco de dados, teste
