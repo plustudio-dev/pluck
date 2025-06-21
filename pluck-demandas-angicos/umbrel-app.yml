@@ -1,0 +1,13 @@
+id: pluck-demandas-angicos
+name: Demandas Angicos
+icon: demandas.svg # Você precisará criar este ícone (um SVG) e colocá-lo na mesma pasta do umbrel-app.yml
+description: Gerenciamento de demandas e serviços da Prefeitura de Angicos, com exportação para Excel.
+developer: Pluck Studio
+website: https://plustudio.dev/pluck # Ou o site específico do projeto, se houver
+repo: https://github.com/plustudio-dev/pluck # O repositório onde este código estará
+version: 1.0.0
+port: 80 # A porta que o Nginx usará para servir a aplicação React
+releaseNotes: |
+  - Lançamento inicial do aplicativo de gerenciamento de demandas.
+  - Adição, visualização e exclusão de demandas.
+  - Exportação de dados para arquivo Excel.

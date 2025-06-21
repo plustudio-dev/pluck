@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    # A imagem 'nginx:alpine' é leve e eficiente para servir arquivos estáticos.
+    image: nginx:alpine
+    container_name: pluck-demandas-angicos_app
+    restart: unless-stopped
+    ports:
+      # Mapeia a porta 80 do contêiner para a porta 80 do host Umbrel,
+      # tornando a aplicação acessível na porta padrão.
+      - "80:80"
+    volumes:
+      # Monta o diretório 'build' da sua aplicação React dentro do diretório de servir do Nginx.
+      # O diretório 'build' é onde os arquivos estáticos da sua aplicação React serão compilados.
+      - ./build:/usr/share/nginx/html:ro
+    # Nginx não precisa de variáveis de ambiente complexas para servir arquivos estáticos.
+    # environment:
+    #   - SOME_ENV_VAR=value
